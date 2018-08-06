@@ -1,0 +1,36 @@
+Opcode size: 1 byte
+	Bits 0-4:	Opcode
+	Bits 5-6:	PostOp
+	Bit 7:		NOT output
+
+Opcodes:
+	00-Pass A
+	01-Pass B
+	02-NOT A
+	03-NOT B
+	04-A AND B
+	05-A OR B
+	06-A XOR B
+	07-Imply A
+	08-Imply B
+	09-Pass lesser
+	0A-Pass greater
+	0B-True
+	0C-False
+	0D-A + B
+	0E-A - B
+	0F-B - A
+	10-Negate A
+	11-Negate B
+	12-Left shift A by B
+	13-Right shift A by B
+	14-Rotate A by B (left)
+	15-Rotate A by B (right)
+	16-Select bit B from A
+	[17 to 1F has not yet beendetermined]
+PostOp codes:
+	00-Do nothing
+	01-Arithmetic right shift
+	02-Left shift
+	03-Right shift
+

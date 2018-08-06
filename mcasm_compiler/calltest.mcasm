@@ -1,0 +1,26 @@
+$alu_add 0x0d
+$alu_sub 0x0e
+
+JMP main
+
+.add #Moves MR0 -> ARA and MR1 -> ARB
+SET $alu_add
+WR OPC
+RD MR0
+WR ARA
+RD MR1
+WR ARB
+RET
+SET 0xFF
+WR DBG
+
+.main
+SET 0x08
+WR MR0
+SET 0x04
+WR MR1
+CALL add
+RD RES
+WR DBG
+HLT
+PCI

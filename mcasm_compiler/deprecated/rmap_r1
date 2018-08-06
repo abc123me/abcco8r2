@@ -1,0 +1,27 @@
+# ALU Registries
+ARA:	0x10	# ALU A register
+ARB:	0x11	# ALU B register
+OPC:	0x12	# ALU opcode
+RES:	0x13	# ALU result register
+CMS:	0x14	# ALU Comparison set register
+CMP:	0x15	# ALU comparison result
+
+# Microcode registries
+MR0:	0x20	# General purpose 0
+MR1:	0x21	# General purpose 1
+MR2:	0x22	# General purpose 2
+MR3:	0x23	# General purpose 3
+MIP:	0x24	# MicroInstruction Pointer
+
+# General purpose registers
+RA:	0x30	# General purpose 0
+RB:	0x31	# General purpose 1
+RC:	0x32	# General purpose 2
+RD:	0x33	# General purpose 3
+
+# Cache
+CDATA:	0x40	# Cache data
+CADDR:	0x41	# Cache address (256B)
+
+# Debug / reserved
+DBG:	0xFF	# Debug registry, for debugging

@@ -1,0 +1,20 @@
+
+JMP grd
+
+.gwr
+SET %DBG
+SELB
+SET 123
+GWR
+JMP end
+
+.grd
+SET %DBG
+SELB
+GRD
+WR DBG
+JMP end
+
+.end
+HLT
+PCI

@@ -1,0 +1,18 @@
+0x10		ALU/Comparitor A register		W
+0x11		ALU/Comparitor B register		W
+0x12		ALU Opcode register			W
+0x13		ALU Result register			R
+
+0x16		Comparison set register			W
+0x17		Comparison result register		R
+
+0x20 -> 0x24	Microcode registries, reset after PCI	RW	NON-PERSISTENT
+0x24 -> 0x28	Microcode registries, persistent	RW
+0x2F		Microcode instruction pointer		R
+
+0x30 -> 0x3F	General purpose registers		RW
+
+0x40		Cache data				RW
+0x41		Cache address				R
+
+0xFF		Debug register				RW	

@@ -1,0 +1,32 @@
+# Microcode test program, for testing
+
+$add_opc 0x0D
+
+JMP .main
+
+# Adds MR0 and MR1, stores result in MR2
+.add
+RD MR0
+WR ARA
+RD MR1
+WR ARB
+SET $add_opc
+WR OPC
+RD RES
+WR MR2
+RET
+
+SET 0xFF
+WR DBG
+HLT
+
+.main
+SET 0x05
+WR MR0
+SET 0x06
+WR MR1
+JMP .add
+RD MR2
+WR DBG
+HLT
+PCI

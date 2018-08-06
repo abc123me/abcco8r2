@@ -1,0 +1,28 @@
+# Fibonicci sequence using microcode:
+$add_opc 0x0D
+
+NOP
+SET $add_opc
+WR OPC
+SET 1
+WR ARA
+SET 0
+WR ARB
+
+.fib		# Our entry point
+RD RES
+WR DBG
+WR ARB
+RCA
+JNZ end
+
+RD RES
+WR DBG
+WR ARA
+RCA		# Read carry to bus
+JNZ end		# If the carry !=0 then stop the program 
+JMP fib
+
+.end
+HLT
+PCI

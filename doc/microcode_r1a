@@ -1,0 +1,53 @@
+ABCco8r2 Microcode revision 1 alpha
+
+2 bytes
+1st byte - Instruction
+2nd byte - Parameter
+
+0x00, NOP - Do nothing
+0x01, RDR <r1> - Puts register <r1> contents on bus
+0x02, RWR <r1> - Writes data on bus to register <r1>
+0x03, SET <val> - Sets bus to <val>
+0x04, JZE <loc> - Jumps to <loc> if bus is zero
+0x05, JNZ <loc> - Jumps to <loc> if bus isn't zero 
+0x06, JMP <loc> - Jump to <loc>
+0x07, RCA - Read carry onto bus
+0x08, HLT - Halts CPU and waits for an interrupt
+0x09, PCI - Increments program counter (thus stopping microcode execution)
+
+
+Example MOV instruction:
+RDR <R1>
+RWR <R2>
+PCI
+
+Example ADD instruction:
+RDR <R1>
+RWR ALUA
+RDR <R2>
+RWR ALUB
+SET addition
+RWR OPC
+RDR  ALUO
+RWR <R3>
+PCI
+
+Fibonicci sequence using microcode:
+00: SET add	0308	
+01: RWR OPC	0212
+02: SET 1	0301
+03: RWR ALUA	0210
+04: SET 0	0300
+05: RWR ALUB	0211
+06: RDR ALUO	0113	;Our entry point
+07: RWR ALUB	0211
+08: RCA		0700
+09: JNZ 0x0E	050F
+0A: RDR ALUO	0113
+0B: RWR ALUA	0210
+0C: RCA		0700	;Read carry to bus
+0D: JNZ 0x0E	050F	;If the carry !=0 then jump 
+0E: JMP 0x06	0606
+0F: PCI		0900
+
+

@@ -1,0 +1,44 @@
+# Single line comment
+
+# Our imap:
+# INV 2 1 value
+# INR 2 1 register
+# INL 2 1 label
+
+# Our rmap:
+# register: 0x11
+
+# Compilation process
+# Step 1: Resolution, resolves the code to symbols 
+# Step 2: Compilation, compiles the symbols to a compilation unit
+# Step 3: Linking, links the instructions together
+# Step 4: Assembling, assembles the instructions into an executable binary
+
+# Special symbols:
+# ; - Marks a compiler option
+# $ - Marks/Resolves a constant value
+# . - Marks/Resolves to a label
+# % - Marks/Resolves to a register
+
+;copt		#Marks a compiler option, used by the compiler not the resolver.
+$const <val>	#Creates a compile time constant, anywhere this is seen it is replaced with <val>
+.label		#Creates a label which acts as a placeholder for an address
+
+INV 0x13	#Instruction with hex 13 as a value param
+INV 0d13	#Instruction with decimal 13 as a value param
+INV 13		#Instruction with decimal 13 as a value param
+INV 0b1101	#Instruction with binary 1101 as a value param
+
+INV %register	#Instruction with a registers address as its parameter
+INV .label	#Instruction with a label's address as its vale
+
+INR register	#Instruction with register reg_name's address as its parameter
+INR %register	#Instruction with register reg_name's address as its parameter
+INR 0x13	#Instruction with 0x13 as its parameter
+INR .label	#Instruction with a label's address as its parameter
+
+INL label	#Instruction that uses .label's address as its parameter
+INL .label	#Instruction that uses .label's address as its parameter
+INL 0x13	#Instruction that uses 0x13 as its parameter
+INL %register	#Instruction that uses %register's address as its parameter
+

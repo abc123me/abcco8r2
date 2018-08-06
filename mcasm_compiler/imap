@@ -1,0 +1,17 @@
+#Instruction, code, size, param_amount, param_types
+NOP:	0x00	2	0
+RD:	0x01	2	1	register
+WR:	0x02	2	1	register
+SET:	0x03	2	1	value
+JZ:	0x04	2	1	label
+JNZ:	0x05	2	1	label
+JMP:	0x06	2	1	label
+JBU:	0x07	2	0
+RCA:	0x08	2	0
+HLT:	0x09	2	0 
+PCI:	0x0A	2	0 
+RET:	0x0B	2	0
+CALL:	0x0C	2	1	label
+SELB:	0x0D	2	0
+GRD:	0x0E	2	0
+GWR:	0x0F	2	0

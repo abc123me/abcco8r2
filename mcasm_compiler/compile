@@ -1,0 +1,3 @@
+#!/bin/sh
+name=$1
+mcasm/compiler.py -i "$name.mcasm" -a logisim -o "../$name.img"

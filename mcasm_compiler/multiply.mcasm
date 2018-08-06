@@ -1,0 +1,98 @@
+# Multiplication using microcode
+# Registers used:
+# MR0 - A value, repetively decremented
+# MR1 - B value, repetively added to MR2 (shouldn't change)
+# MR2 - Result
+# MR3 - Overflow register
+
+$add_opc 0x0D
+$sub_opc 0x0E
+$grt_pass 0x0A
+$lth_pass 0x09
+
+# User enters A into debug register
+#----------------------------------------
+NOP # Added because CPU don't register halts at 0x00
+HLT 
+RD DBG
+WR MR0 
+# User enters B into debug register
+#----------------------------------------
+HLT 
+RD DBG
+WR MR1 
+# Set MR2, and MR3 to 0
+#----------------------------------------
+SET 0x00
+WR MR2 
+WR MR3
+# Check if either register are 0, if so exit with MR2 (which is 0)
+#----------------------------------------
+RD MR0
+JZ .end
+RD MR1
+JZ .end
+# Compare the two registers and put the smallest one in MR0
+#----------------------------------------
+RD MR0
+WR ARA
+RD MR1
+WR ARB
+SET $lth_pass
+WR OPC
+RD RES
+WR MR0
+SET $grt_pass
+WR OPC
+RD RES
+WR MR1
+WR DBG
+
+.loop
+# Decrement MR0
+#----------------------------------------
+RD MR0 #Read from MR0 and load to ALUA
+WR ARA
+SET $sub_opc
+WR OPC
+SET 0x01
+WR ARB 
+RD RES 
+WR MR0 #Remember to set MR0, otherwise it won't decrement
+ 
+# Add MR2 to MR1
+#----------------------------------------
+RD MR1
+WR ARA
+RD MR2
+WR ARB
+SET $add_opc
+WR OPC
+RD RES #Read result
+WR MR2
+WR DBG
+# Check overflow, skip this if there is none
+#---------------------------------------
+RCA
+JZ ov_skip
+WR ARA
+RD MR3
+WR ARB
+RD RES
+WR MR3
+.ov_skip
+# Check progress, if MR0 == 0 then end the program, else continue
+#----------------------------------------
+RD MR0
+JZ .end
+JMP .loop #Back to beginning
+
+.end
+RD MR2
+WR DBG
+HLT
+RD MR3
+WR DBG
+HLT
+PCI
+
