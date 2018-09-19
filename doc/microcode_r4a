@@ -1,0 +1,24 @@
+ABCco8r2 Microcode revision 4a
+
+2 bytes
+1st byte - Instruction
+2nd byte - Parameter
+
+0x00, NOP			Does nothing
+0x01, RD <reg>		Reads register to bus
+0x02, WR <reg>		Writes register to bus
+0x03, SET <value>	Sets bus to <value>
+0x04, JZ <loc>		Jumps to <loc> if bus is 0
+0x05, JNZ <loc>		Jumps to <loc> if bus isn't 0
+0x06, JMP <loc>		Jumps to <loc>
+0x07, JBU			Jumps to whatever is on bus
+0x08, RCA			Reads ALU carry to the bus
+0x09, HLT			Halts, and waits for ANY interrupt
+0x0A, PCI			Increments the program counter
+0x0B, RET			Jumps to the microcode stack pointer
+0x0C, CALL <loc>	Jumps to <loc>, sets microcode stack pointer to next address
+0x0D, SELB			Redirects MCU register select to bus
+0x0E, GRD			Manual global read
+0x0F, GWR			Manual global write
+0x10, HLI <value>	Halt and wait for a specific interrupt with <value> as it's flag
+0x11, HLB			Halt and wait for a specific interrupt equal to the value on the bus	

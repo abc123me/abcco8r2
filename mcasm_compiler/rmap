@@ -41,5 +41,8 @@ D3:	0x3f	# General purpose bank D register 3
 CDATA:	0x40	# Cache data
 CADDR:	0x41	# Cache address (256B)
 
+# Interrupts
+IFR: 0x42		# Interrupt flag register
+
 # Debug / reserved
 DBG:	0xFF	# Debug registry, for debugging

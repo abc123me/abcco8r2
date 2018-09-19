@@ -15,3 +15,4 @@ CALL:	0x0C	2	1	label
 SELB:	0x0D	2	0
 GRD:	0x0E	2	0
 GWR:	0x0F	2	0
+HLI:	0x10	2	1	value
